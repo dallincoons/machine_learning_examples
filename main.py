@@ -1,7 +1,7 @@
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import GaussianNB
-from hard_coded_classifier import *
+from prediction import *
+from classification import *
 
 
 def main():
@@ -16,25 +16,16 @@ def main():
         shuffle=True
     )
 
-    runGaussianNBPrediction(data_train, targets_train, data_test)
-    runHardCodedPrediction(data_train, targets_train, data_test)
+    prediction = Prediction(data_train, targets_train, data_test)
+
+    classificationKey = input('Select a classification algorithm: \n'
+         + GAUSSIAN_CLASSIFIER + ') GaussianNB \n'
+         + HARD_CODED_CLASSIFIER + ') Hard coded \n'
+    )
 
 
-def runGaussianNBPrediction(data_train, targets_train, data_test):
-    classifier = GaussianNB()
-    classifier.fit(data_train, targets_train)
+    prediction.runWith(Classification.get(classificationKey))
 
-    targets_predicted = classifier.predict(data_test)
-
-    print('GaussianNB prediction: ')
-    print(targets_predicted)
-
-def runHardCodedPrediction(data_train, targets_train, data_test):
-    classifier = HardCodedClassifier()
-    classifier.fit(data_train, targets_train)
-    targets_predicted = classifier.predict(data_test)
-
-    print(targets_predicted)
 
 if __name__== "__main__":
   main()
