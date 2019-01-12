@@ -16,15 +16,16 @@ def main():
         shuffle=True
     )
 
-    prediction = Prediction(data_train, targets_train, data_test)
+    prediction = Prediction(data_train, targets_train, data_test, target_test)
 
     classificationKey = input('Select a classification algorithm: \n'
          + GAUSSIAN_CLASSIFIER + ') GaussianNB \n'
          + HARD_CODED_CLASSIFIER + ') Hard coded \n'
     )
 
+    accuracy = prediction.runWith(Classification.get(classificationKey))
 
-    prediction.runWith(Classification.get(classificationKey))
+    print('The accuracy was: ' + str(accuracy))
 
 
 if __name__== "__main__":
