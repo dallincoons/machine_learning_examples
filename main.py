@@ -21,6 +21,7 @@ def main():
     classificationKey = input('Select a classification algorithm: \n'
          + GAUSSIAN_CLASSIFIER + ') GaussianNB \n'
          + HARD_CODED_CLASSIFIER + ') Hard coded \n'
+         + KNN_CLASSIFIER + ') KNN Classifier  \n'
     )
 
     accuracy = prediction.runWith(Classification.get(classificationKey))
