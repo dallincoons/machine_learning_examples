@@ -2,8 +2,9 @@ from math import sqrt
 import numpy as np
 
 class KNNClassifier():
-    def __init__(self, distance):
+    def __init__(self, distance, k = 1):
         self.distance = distance
+        self.k = k
 
     def fit(self, training_data, training_targets):
         self.training_data = training_data
@@ -21,5 +22,9 @@ class KNNClassifier():
         return list(map(lambda answer: (self.distance.calculateDistance(answer[0], item), answer[1]), distances))
 
     def mostCommonN(self, distances):
-        distances.sort(key=lambda tup: tup[0])
-        return distances[0][1]
+        distances.sort(key=lambda up: up[0])
+        candidates = [x[1] for x in distances[0:self.k]]
+        return self.mostCommon(candidates)
+
+    def mostCommon(self, candidates):
+        return max(set(candidates), key=candidates.count)

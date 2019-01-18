@@ -13,6 +13,6 @@ class Classification:
         switcher = {
             GAUSSIAN_CLASSIFIER: GaussianNB(),
             HARD_CODED_CLASSIFIER: HardCodedClassifier(),
-            KNN_CLASSIFIER: KNNClassifier(EuclidienDistance()),
+            KNN_CLASSIFIER: KNNClassifier(EuclidienDistance(), 3),
         }
         return switcher.get(key)
