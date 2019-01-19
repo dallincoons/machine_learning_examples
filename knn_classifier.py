@@ -18,8 +18,8 @@ class KNNClassifier():
         distances = self.calculateDistances(data, self.answers)
         return self.mostCommonN(distances)
 
-    def calculateDistances(self, item, distances):
-        return list(map(lambda answer: (self.distance.calculateDistance(answer[0], item), answer[1]), distances))
+    def calculateDistances(self, item, answers):
+        return list(map(lambda answer: (self.distance.calculateDistance(answer[0], item), answer[1]), answers))
 
     def mostCommonN(self, distances):
         distances.sort(key=lambda up: up[0])
