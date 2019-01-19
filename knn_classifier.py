@@ -9,7 +9,7 @@ class KNNClassifier():
     def fit(self, training_data, training_targets):
         self.training_data = training_data
         self.training_targets = training_targets
-        self.answers = list(zip(self.training_data, self.training_targets))
+        self.answers = np.array(list(zip(self.training_data, self.training_targets)))
 
     def predict(self, test_data):
         return np.array(list(map(lambda data: self.calculatePrediction(data), test_data)))
