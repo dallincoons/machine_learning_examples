@@ -1,5 +1,4 @@
 from knn_classifier import *
-from sklearn import datasets
 from DistanceStrategies.euclidien_distance import *
 
 training_data = [
@@ -27,6 +26,7 @@ def test_classifier_predicts_using_knn_algorithm_using_euclidean_distance():
     assert(['B', 'C'] == result.tolist())
 
 def test_get_most_common_n():
-    classifier = KNNClassifier(EuclidienDistance())
+    classifier = KNNClassifier(EuclidienDistance(), k=3)
     classifier.fit(training_data, training_targets)
     result = classifier.predict([[9, 9, 9, 9]])
+    assert('C' == result)
