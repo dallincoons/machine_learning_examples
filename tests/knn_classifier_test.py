@@ -21,7 +21,7 @@ training_targets = [
 ]
 
 def test_classifier_predicts_using_knn_algorithm_using_euclidean_distance():
-    classifier = KNNClassifier(EuclidienDistance(), k=3)
+    classifier = KNNClassifier(EuclidienDistance(), k=1)
     classifier.fit(training_data, training_targets)
     result = classifier.predict([[3, 3, 3, 3], [4, 4, 4, 4]])
     assert(['B', 'C'] == result.tolist())
