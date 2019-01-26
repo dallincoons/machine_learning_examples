@@ -25,6 +25,7 @@ def main():
     target = np.array(data['class'])
     prepped_data = pandas.DataFrame()
 
+    #convert strings values to numeric
     prepped_data['buying_cat'] = data.buying.astype('category').cat.codes
     prepped_data['maint_cat'] = data.maint.astype('category').cat.codes
     prepped_data['safety_cat'] = data.safety.astype('category').cat.codes

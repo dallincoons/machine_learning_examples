@@ -16,14 +16,12 @@ def main():
 
     data = data.drop(columns=['car name', 'mpg'])
 
-    prepped_data = data
-
     # I think the discrete values such as this will work as-is
-    prepped_data['model year'].unique()
-    prepped_data['cylinders'].unique()
+    data['model year'].unique()
+    data['cylinders'].unique()
 
     data_train, data_test, targets_train, target_test = train_test_split(
-        prepped_data.values,
+        data.values,
         target,
         train_size=.70,
         test_size=.30,
