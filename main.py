@@ -3,7 +3,6 @@ from sklearn.model_selection import train_test_split
 from prediction import *
 from classification import *
 
-
 def main():
     iris = datasets.load_iris()
 
