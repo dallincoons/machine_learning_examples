@@ -14,5 +14,5 @@ def test_decision_tree():
         random_state=0
     )
 
-    classifier = DecisionTreeClassifier()
-    classifier.fit(data_train, targets_train)
+    # classifier = DecisionTreeClassifier()
+    # classifier.fit(data_train, targets_train)

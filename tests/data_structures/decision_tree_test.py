@@ -4,6 +4,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.datasets import load_iris
+from decision_tree.decision_tree_builder import DecisionTreeBuilder
+from decision_tree.tree import Tree
 
 TEST_INPUTS = [
     ['good', 'high', 'good'],
@@ -35,25 +37,34 @@ CLASSES = [
     'n',
 ]
 
-def test_find_class_percentages():
-    tree = DecisionTree.build(pd.DataFrame(TEST_INPUTS), pd.DataFrame(CLASSES))
-    percentages = tree.class_percentages(pd.DataFrame(['y', 'y', 'y', 'n']))
+FEATURE_NAMES = ['credit_score', 'income', 'collateral']
 
-    assert(percentages == [.75, .25])
+# def test_returns_tree():
+#     tree = DecisionTreeBuilder().create()
+#
+#     assert(isinstance(tree, Tree))
 
-    percentages = tree.class_percentages(pd.DataFrame(['y', 'y', 'y']))
+# def test_find_class_percentages():
+#     tree = DecisionTree.build(pd.DataFrame(TEST_INPUTS), pd.DataFrame(CLASSES), FEATURE_NAMES)
+#     percentages = tree.class_percentages(pd.DataFrame(['y', 'y', 'y', 'n']))
+#
+#     assert(percentages == [.75, .25])
+#
+#     percentages = tree.class_percentages(pd.DataFrame(['y', 'y', 'y']))
+#
+#     assert(percentages == [1, 0])
+#
+#     print(tree.tree)
 
-    assert(percentages == [1, 0])
+# def test_find_lowest_entropy_attribute():
+#     tree = DecisionTree.build(pd.DataFrame(TEST_INPUTS), pd.DataFrame(CLASSES), FEATURE_NAMES)
+#
+#     assert(1 == tree.find_attribute_with_lowest_entropy())
 
-def test_find_lowest_entropy_attribute():
-    tree = DecisionTree.build(pd.DataFrame(TEST_INPUTS), pd.DataFrame(CLASSES))
-
-    assert(1 == tree.find_attribute_with_lowest_entropy())
-
-def test_find_attribute_with_lowest_entropy():
-    tree = DecisionTree.build(pd.DataFrame(TEST_INPUTS), pd.DataFrame(CLASSES))
-
-    tree = DecisionTreeClassifier()
+# def test_find_attribute_with_lowest_entropy():
+    # tree = DecisionTree.build(pd.DataFrame(TEST_INPUTS), pd.DataFrame(CLASSES), FEATURE_NAMES)
+    #
+    # tree = DecisionTreeClassifier()
 
     # iris = load_iris()
     # clf = tree.fit(iris.data, iris.target)
