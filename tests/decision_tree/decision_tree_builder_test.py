@@ -1,4 +1,4 @@
-from decision_tree.attribute_entropy import AttributeEntropy
+from decision_tree.decision_tree_builder import DecisionTreeBuilder
 
 ATTRIBUTES = [
     ['good', 'high', 'good'],
@@ -12,7 +12,7 @@ ATTRIBUTES = [
     ['low', 'high', 'good'],
     ['low', 'high', 'poor'],
     ['low', 'low', 'good'],
-    ['low', 'low', 'poor'],
+    # ['low', 'low', 'poor'],
 ]
 
 CLASSES = [
@@ -30,37 +30,29 @@ CLASSES = [
     'n',
 ]
 
-HIGH_INCOMES = [
-    ['good', 'good'],
-    ['good', 'poor'],
-    ['average', 'good'],
-    ['average', 'poor'],
-    ['low', 'good'],
-    ['low', 'poor'],
-]
+def test_creates_node_with_categories():
+    tree = DecisionTreeBuilder().create(ATTRIBUTES, CLASSES, ['credit score', 'income', 'collateral'])
+    # assert(root_node.categories == ['high', 'low'])
 
-HI_CLASSES = [
-    'y',
-    'y',
-    'y',
-    'y',
-    'y',
-    'n',
-]
+data = {
+    0 : 1,
+    1: 2,
 
-FEATURE_NAMES = ['credit_score', 'income', 'collateral']
+}
 
-def test_finds_lowest_entropy_attribute():
-    best = AttributeEntropy(ATTRIBUTES, CLASSES).lowest_attributes()
-    assert(best == 1) #income
+class BasicTree:
+    def build(self, list):
+        tree = {}
+        # print(len(list))
+        if len(list) == 0:
+            return 'y'
+        else:
+            len2 = len(list)
+            list.pop()
+            subtree = self.build(list)
+            tree[len2] = subtree
+        return tree
 
-    best = AttributeEntropy(HIGH_INCOMES, CLASSES).lowest_attributes()
-    assert(best == 1) #collatoral
-
-def test_is_leaf():
-    is_leaf = AttributeEntropy(['y'], ['y']).is_leaf(['y', 'y', 'y'])
-    assert(True == is_leaf)
-
-    is_leaf = AttributeEntropy(['y'], ['y']).is_leaf(['y', 'y', 'y', 'n'])
-    assert(False == is_leaf)
-
+def test_build_basic_tree():
+    tree = BasicTree().build([1,2,3])
+    # print(tree)

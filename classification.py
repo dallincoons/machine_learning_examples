@@ -1,7 +1,7 @@
 from sklearn.naive_bayes import GaussianNB
 from hard_coded_classifier import *
 from knn_classifier import *
-from DistanceStrategies.euclidien_distance import *
+from distance_strategies.euclidien_distance import *
 from decision_tree_classifier import DecisionTreeClassifier
 
 GAUSSIAN_CLASSIFIER = '1'

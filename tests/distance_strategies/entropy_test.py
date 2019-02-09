@@ -1,4 +1,4 @@
-from DistanceStrategies.entropy import Entropy
+from distance_strategies.entropy import Entropy
 
 def test_calculates_entropy():
     result = Entropy.calculate([.75, .25])

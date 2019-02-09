@@ -1,5 +1,5 @@
 from knn_classifier import *
-from DistanceStrategies.euclidien_distance import *
+from distance_strategies.euclidien_distance import *
 
 training_data = [
     [1, 1, 1, 1],

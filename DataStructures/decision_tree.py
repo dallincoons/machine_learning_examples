@@ -1,4 +1,4 @@
-from DistanceStrategies.entropy import Entropy
+from distance_strategies.entropy import Entropy
 from DataStructures.decision_node import DecisionNode
 import pandas as pd
 

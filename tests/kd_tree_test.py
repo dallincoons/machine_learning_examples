@@ -1,5 +1,5 @@
 from DataStructures.kd_tree import KdTree
-from DistanceStrategies.euclidien_distance import EuclidienDistance
+from distance_strategies.euclidien_distance import EuclidienDistance
 
 dataset = [
     [5,6,7,8],

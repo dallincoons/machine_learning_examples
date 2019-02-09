@@ -1,6 +1,6 @@
 import math
 import pandas as pd
-from DistanceStrategies.entropy import Entropy
+from distance_strategies.entropy import Entropy
 from decision_tree.entropy_calculator import EntropyCalculator as Entropy
 
 class AttributeEntropy:

@@ -1,4 +1,4 @@
-from DistanceStrategies.euclidien_distance import *
+from distance_strategies.euclidien_distance import *
 
 def test_calculate_distance_between_multidimensional_points():
     distance = EuclidienDistance()
