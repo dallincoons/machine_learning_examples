@@ -4,6 +4,8 @@ import numpy as np
 
 class DecisionTreeBuilder:
     def create(self, attributes, classes, featureNames):
+        if len(attributes) == 0:
+            return list(set(classes))[0]
         best_attribute = AttributeEntropy(attributes, classes).lowest_attributes()
         best_attribute_unique_values = self.unique_values_in_col(attributes, best_attribute)
 
@@ -11,10 +13,11 @@ class DecisionTreeBuilder:
 
         for attribute_category in best_attribute_unique_values:
             matching_rows, matching_classes = self.rows_matching_attribute_value(list(zip(attributes, classes)), best_attribute, attribute_category)
+
             if self.attribute_is_pure(matching_classes):
                 tree[featureNames[best_attribute]][attribute_category] = list(set(matching_classes))[0]
             else:
-                newAttributes = self.remove_col(matching_rows, best_attribute)
+                newAttributes = self.remove_col(matching_rows[:], best_attribute)
                 newFeatureNames = featureNames[:]
                 del newFeatureNames[best_attribute]
                 tree[featureNames[best_attribute]][attribute_category] = self.create(newAttributes, matching_classes, newFeatureNames)
@@ -36,10 +39,3 @@ class DecisionTreeBuilder:
 
     def attribute_is_pure(self, classes):
         return len(set(classes)) == 1
-
-    # def generateDecisions(self, attributes, column, categories):
-    #     for category in categories:
-    #         self.generateDecision([attribute for attribute in attributes if attribute[column] == category])
-    #
-    # def generateDecision(self, attributes, category):
-    #     print(attributes)
