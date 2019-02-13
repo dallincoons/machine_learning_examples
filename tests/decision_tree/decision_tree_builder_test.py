@@ -12,7 +12,7 @@ ATTRIBUTES = [
     ['low', 'high', 'good'],
     ['low', 'high', 'poor'],
     ['low', 'low', 'good'],
-    # ['low', 'low', 'poor'],
+    ['low', 'low', 'poor'],
 ]
 
 CLASSES = [
@@ -30,9 +30,31 @@ CLASSES = [
     'n',
 ]
 
+SIMPLE_ATTRIBUTES = [
+    ['high', 'poor'],
+    ['high', 'poor'],
+    ['high', 'poor'],
+    ['high', 'poor'],
+    ['low', 'good'],
+    ['low', 'good'],
+    ['low', 'good'],
+    ['low', 'good'],
+]
+
+SIMPLE_CLASSES = [
+    'y',
+    'y',
+    'y',
+    'n',
+    'n',
+    'n',
+    'n',
+    'n',
+]
+
 def test_creates_node_with_categories():
     tree = DecisionTreeBuilder().create(ATTRIBUTES, CLASSES, ['credit score', 'income', 'collateral'])
-    # assert(root_node.categories == ['high', 'low'])
+    print(tree)
 
 data = {
     0 : 1,

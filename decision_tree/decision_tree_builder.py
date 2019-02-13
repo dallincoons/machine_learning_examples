@@ -4,7 +4,7 @@ import numpy as np
 
 class DecisionTreeBuilder:
     def create(self, attributes, classes, featureNames):
-        if len(attributes) == 0:
+        if len(attributes[0]) == 0:
             return list(set(classes))[0]
         best_attribute = AttributeEntropy(attributes, classes).lowest_attributes()
         best_attribute_unique_values = self.unique_values_in_col(attributes, best_attribute)

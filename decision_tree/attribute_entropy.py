@@ -13,7 +13,6 @@ class AttributeEntropy:
         columns = self.attributes
         classes = self.classes
         entropies = {}
-
         for col_index in range(0, columns.shape[1]):
             columnsToSplit = columns[col_index].unique()
             weights = []
