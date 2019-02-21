@@ -6,11 +6,12 @@ class Network():
         self.num_layers = num_layers
 
     def create(self, dataset, classes):
-        layer = Layer(self.learning_rate)
-        layer.create(dataset, classes)
+        # for index, input in enumerate(dataset):
+            layer = Layer()
+            layer.create(dataset[0], classes)
 
-        nodes = layer.nodes
+            nodes = layer.nodes
 
-        correct = [node for node in nodes if node.calculateOutput() == node.correct_answer]
+            correct = [node for node in nodes if node.calculateOutput() == classes[0]]
 
-        print(len(correct) / len(dataset))
+            print(len(correct) / len(dataset))

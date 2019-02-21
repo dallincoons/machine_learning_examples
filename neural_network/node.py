@@ -2,13 +2,11 @@ import random
 import numpy as np
 
 class Node:
-    def __init__(self, correct_answer, bias = -1, threshold = 0):
-        self.inputs = []
-        self.weights = []
-        self.correct_answer = correct_answer
+    def __init__(self, input, bias = -1):
+        self.inputs = input
+        self.weights = list(map(lambda x: random.uniform(-1,1), range(0, len(input))))
         self.bias = bias
         self.bias_weight = random.uniform(-1, 1)
-        self.threshold = threshold
 
     def addInput(self, input, weight):
         self.inputs.append(input)
@@ -25,6 +23,6 @@ class Node:
         return self.one_or_zero(dot_product)
 
     def one_or_zero(self, value):
-        if (value > self.threshold):
+        if (value > random.uniform(-1, 1)):
             return 1
         return 0

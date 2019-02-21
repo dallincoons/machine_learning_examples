@@ -23,14 +23,7 @@ SMALL_TEST_CLASS = [
     1
 ]
 
-def setup_class():
-    print('test')
-
-def test_heyo():
-    result = Layer(learning_rate=1).create(SMALL_INPUT, SMALL_INPUT_CLASS)
-    print(result)
-
 def test_initialize_nodes():
-    result = Layer(learning_rate=1, num_nodes=4).initialize_nodes(4)
+    result = Layer(num_nodes=4).initialize_nodes(SMALL_TEST)
     assert(len(result) == 4)
-    assert(type(result[0]) == type(Node(1)))
+    assert(type(result[0]) == type(Node([])))
