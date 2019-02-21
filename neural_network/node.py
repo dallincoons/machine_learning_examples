@@ -18,9 +18,9 @@ class Node:
         inputs.append(self.bias)
         weights.append(self.bias_weight)
 
-        dot_product = np.dot(inputs, weights)
+        self.value = np.dot(inputs, weights)
 
-        return self.one_or_zero(dot_product)
+        return self.one_or_zero(self.value)
 
     def one_or_zero(self, value):
         if (value > random.uniform(-1, 1)):

@@ -1,17 +1,15 @@
 from neural_network.layer import Layer
 
 class Network():
-    def __init__(self, learning_rate, num_layers = 1):
+    def __init__(self, layer_layouts, learning_rate):
         self.learning_rate = learning_rate
-        self.num_layers = num_layers
+        self.layers_layouts = layer_layouts
+        self.layers = []
 
     def create(self, dataset, classes):
         # for index, input in enumerate(dataset):
-            layer = Layer()
-            layer.create(dataset[0], classes)
-
-            nodes = layer.nodes
-
-            correct = [node for node in nodes if node.calculateOutput() == classes[0]]
-
-            print(len(correct) / len(dataset))
+        dataset = dataset[0]
+        for layer_size in self.layers_layouts:
+            layer = Layer(dataset, layer_size)
+            dataset = layer.calculateOutput()
+            self.layers.append(layer)
