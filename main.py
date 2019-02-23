@@ -22,6 +22,7 @@ def main():
          + GAUSSIAN_CLASSIFIER + ') GaussianNB \n'
          + HARD_CODED_CLASSIFIER + ') Hard coded \n'
          + KNN_CLASSIFIER + ') KNN Classifier  \n'
+         + NEURAL_NET_CLASSIFIER + ') Neural Net Classifier  \n'
     )
 
     accuracy = prediction.runWith(Classification.get(classificationKey))
