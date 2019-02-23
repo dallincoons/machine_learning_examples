@@ -1,13 +1,6 @@
 from neural_network.node import Node
 
-def test_determines_wether_neuron_fires():
-    neuron = Node([1,2,3], -1)
+def test_determines_whether_neuron_fires():
+    node = Node([0, 0, 0], 0)
 
-    neuron.addInput(1, -.3)
-    neuron.addInput(2, .2)
-    neuron.addInput(3, -.4)
-    neuron.addInput(4, .4)
-
-    neuron.bias_weight = .5
-
-    # assert(neuron.calculateOutput() == 0)
+    assert(node.calculateOutput() == .5)

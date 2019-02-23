@@ -1,5 +1,6 @@
 import random
 import numpy as np
+from neural_network.activation_function import ActivationFunction
 
 class Node:
     def __init__(self, input, bias = -1):
@@ -20,9 +21,4 @@ class Node:
 
         self.value = np.dot(inputs, weights)
 
-        return self.one_or_zero(self.value)
-
-    def one_or_zero(self, value):
-        if (value > random.uniform(-1, 1)):
-            return 1
-        return 0
+        return ActivationFunction.sigmoid(self.value)
