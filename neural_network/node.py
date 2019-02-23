@@ -9,13 +9,16 @@ class Node:
         self.bias = bias
         self.bias_weight = random.uniform(-1, 1)
 
+    def setInput(self, input):
+        self.inputs = input
+
     def addInput(self, input, weight):
         self.inputs.append(input)
         self.weights.append(weight)
 
     def calculateOutput(self):
-        inputs = self.inputs
-        weights = self.weights
+        inputs = self.inputs[:]
+        weights = self.weights[:]
         inputs.append(self.bias)
         weights.append(self.bias_weight)
 

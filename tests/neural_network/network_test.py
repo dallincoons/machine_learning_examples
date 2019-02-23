@@ -18,10 +18,27 @@ SMALL_INPUT_CLASS = [
 
 def test_build_network():
     network = Network([2,4,7], learning_rate=.1)
-    network.create(SMALL_INPUT, SMALL_INPUT_CLASS)
+    network.create(SMALL_INPUT[0])
     layers = network.layers
 
     assert(len(layers) == 3)
     assert(len(layers[0].nodes) == 2)
     assert(len(layers[1].nodes) == 4)
     assert(len(layers[2].nodes) == 7)
+
+def test_run_network():
+    network = Network([3, 2], learning_rate=.1)
+
+    output = network.create(SMALL_INPUT[0])
+    output2 = network.create(SMALL_INPUT[0])
+    output3 = network.create(SMALL_INPUT[1])
+
+    assert(output == output2)
+    assert(output != output3)
+
+def test_network_creation_returns_correct_number_of_output():
+    network = Network([3, 2], learning_rate=.1)
+
+    output = network.create(SMALL_INPUT[1])
+
+    assert(2 == len(output))
