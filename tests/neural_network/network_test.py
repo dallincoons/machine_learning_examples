@@ -18,7 +18,7 @@ SMALL_INPUT_CLASS = [
 
 def test_build_network():
     network = Network([2,4,7], learning_rate=.1)
-    network.create(SMALL_INPUT[0])
+    network.calculateOutput(SMALL_INPUT[0])
     layers = network.layers
 
     assert(len(layers) == 3)
@@ -29,9 +29,9 @@ def test_build_network():
 def test_run_network():
     network = Network([3, 2], learning_rate=.1)
 
-    output = network.create(SMALL_INPUT[0])
-    output2 = network.create(SMALL_INPUT[0])
-    output3 = network.create(SMALL_INPUT[1])
+    output = network.calculateOutput(SMALL_INPUT[0])
+    output2 = network.calculateOutput(SMALL_INPUT[0])
+    output3 = network.calculateOutput(SMALL_INPUT[1])
 
     assert(output == output2)
     assert(output != output3)
@@ -39,6 +39,6 @@ def test_run_network():
 def test_network_creation_returns_correct_number_of_output():
     network = Network([3, 2], learning_rate=.1)
 
-    output = network.create(SMALL_INPUT[1])
+    output = network.calculateOutput(SMALL_INPUT[1])
 
     assert(2 == len(output))

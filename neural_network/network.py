@@ -6,7 +6,7 @@ class Network():
         self.layers_layouts = layer_layouts
         self.layers = []
 
-    def create(self, dataset):
+    def calculateOutput(self, dataset):
         if len(self.layers) == 0:
             for layer_size in self.layers_layouts:
                 layer = Layer(dataset, layer_size)
