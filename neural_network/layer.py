@@ -9,6 +9,12 @@ class Layer:
         self.input = input
         self.bias = -1
         self.nodes = self.initialize_nodes(input)
+        self.prevLayer = None
+
+    @staticmethod
+    def initialize(input, bias = -1, num_nodes = 4):
+        layer = Layer([])
+        layer.nodes = [Node(input[:], bias) for _ in range(num_nodes)]
 
     def setInput(self, input):
         self.input = input

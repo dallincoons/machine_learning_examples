@@ -7,10 +7,14 @@ class Network():
         self.layers = []
 
     def calculateOutput(self, dataset):
+        prevLayer = None
         if len(self.layers) == 0:
             for layer_size in self.layers_layouts:
                 layer = Layer(dataset, layer_size)
                 dataset = layer.calculateOutput()
+                if (prevLayer != None):
+                    layer.prevLayer = prevLayer
+                prevLayer = layer
                 self.layers.append(layer)
         else:
             for layer in self.layers:

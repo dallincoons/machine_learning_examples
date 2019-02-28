@@ -24,4 +24,6 @@ class Node:
 
         self.value = np.dot(inputs, weights)
 
-        return ActivationFunction.sigmoid(self.value)
+        self.activation = ActivationFunction.sigmoid(self.value)
+
+        return self.activation

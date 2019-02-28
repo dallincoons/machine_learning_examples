@@ -42,3 +42,10 @@ def test_network_creation_returns_correct_number_of_output():
     output = network.calculateOutput(SMALL_INPUT[1])
 
     assert(2 == len(output))
+
+def test_layer_has_reference_to_previous_layer():
+    network = Network([3, 2], learning_rate=.1)
+
+    network.calculateOutput([])
+
+    assert(3 == len(network.layers[1].prevLayer.nodes))
