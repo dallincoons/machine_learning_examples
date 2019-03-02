@@ -5,16 +5,16 @@ class NeuralNetClassifier():
     def fit(self, training_data, training_targets):
         print('----')
 
-        print(training_data)
+        self.network = Network([4, len(np.unique(training_targets))], len(training_data.tolist()[0]), len(set(training_targets)), .1)
 
-        # self.network.calculateOutput(training_data.tolist()[0])
-        # for key, training in enumerate(training_data.tolist()):
-        self.network = Network([4, len(np.unique(training_targets))], .1, training_data.tolist()[0])
-        self.network.calculateOutput()
-            # targets = (self.target_pad(training_data.shape[1] - 1, training_targets[key]))
+        for i in range(0, 500):
+            for key, training in enumerate(training_data.tolist()):
+                self.network.train(training)
+                self.network.layers[-1].calculateErrors(self.target_pad(len(training_targets), training_targets[key]))
+                self.network.updateWeights()
 
     def predict(self, test_data):
-        outputs = list(map(lambda data: self.network.calculateOutput(), test_data.tolist()))
+        outputs = list(map(lambda data: self.network.calculateOutput(data), test_data.tolist()))
 
         return np.array(list(map(self.highest_index, outputs)))
 

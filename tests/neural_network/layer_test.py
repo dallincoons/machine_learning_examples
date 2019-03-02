@@ -24,11 +24,16 @@ SMALL_TEST_CLASS = [
 ]
 
 def test_initialize_nodes():
-    result = Layer(SMALL_TEST).initialize_nodes(SMALL_TEST)
+    layer = Layer(4)
+    layer.setPreviousLayer(Layer(4))
+    layer.initialize_nodes()
+    result = layer.nodes
     assert(len(result) == 4)
-    assert(type(result[0]) == type(Node([])))
+    assert(type(result[0]) == type(Node(0)))
 
 def test_calculate_output():
-    layer = Layer([2 ,4, 7], 5)
+    layer = Layer(5)
+    layer.setPreviousLayer(Layer(3))
+    layer.setInput([1,2,3])
 
     assert(len(layer.calculateOutput()) == 5)

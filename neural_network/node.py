@@ -3,13 +3,13 @@ import numpy as np
 from neural_network.activation_function import ActivationFunction
 
 class Node:
-    def __init__(self, input, bias = -1):
-        self.inputs = input
-        self.weights = list(map(lambda x: random.uniform(-1,1), range(0, len(input))))
+    def __init__(self, num_weights, bias = -1):
+        self.inputs = []
+        self.biasless_weights = list(map(lambda x: random.uniform(-1,1), range(0, num_weights)))
         self.bias = bias
         self.bias_weight = random.uniform(-1, 1)
+        self.weights = self.biasless_weights[:]
         self.weights.append(self.bias_weight)
-        self.inputs.append(bias)
 
     def setInput(self, input):
         self.inputs = input
@@ -21,6 +21,7 @@ class Node:
     def calculateOutput(self):
         inputs = self.inputs[:]
         weights = self.weights[:]
+        inputs.append(self.bias)
 
         self.value = np.dot(inputs, weights)
         self.activation = ActivationFunction.sigmoid(self.value)
@@ -34,7 +35,7 @@ class Node:
     def calculateHiddenError(self, layer, targets):
         nodeErrors = 0
         for key, node in enumerate(layer.nodes):
-            nodeErrors += node.weights[key + 1] * node.calculateError(targets[key])
+            nodeErrors += node.biasless_weights[key] * node.calculateError(targets[key])
 
         self.error = self.activation * (1 - self.activation) * nodeErrors
         return self.error
