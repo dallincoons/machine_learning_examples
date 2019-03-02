@@ -5,10 +5,12 @@ class NeuralNetClassifier():
     def fit(self, training_data, training_targets):
         print('----')
 
+        print(training_data)
+
         # self.network.calculateOutput(training_data.tolist()[0])
-        for key, training in enumerate(training_data.tolist()):
-            self.network = Network([4, len(np.unique(training_targets))], .1, training)
-            self.network.calculateOutput()
+        # for key, training in enumerate(training_data.tolist()):
+        self.network = Network([4, len(np.unique(training_targets))], .1, training_data.tolist()[0])
+        self.network.calculateOutput()
             # targets = (self.target_pad(training_data.shape[1] - 1, training_targets[key]))
 
     def predict(self, test_data):

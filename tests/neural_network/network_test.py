@@ -40,9 +40,67 @@ def test_layer_has_reference_to_previous_layer():
 
     assert(3 == len(network.layers[1].prevLayer.nodes))
 
-def test_correct_output():
+def test_is_initialized_with_correct_number_of_layers():
     network = Network([2,2], learning_rate=.1, dataset=[1.2, -.2])
 
-    output = network.calculateOutput()
+    assert(2 == len(network.layers))
+    assert([1.2, -0.2] == network.layers[0].input)
 
-    print(output)
+def test_is_initialized_with_correct_number_of_nodes():
+    network = Network([2,2], learning_rate=.1, dataset=[1.2, -.2])
+
+    assert(2 == len(network.layers[0].nodes))
+
+def test_nodes_have_correct_number_of_weights():
+    network = Network([2,2], learning_rate=.1, dataset=[1.2, -.2])
+
+    assert(3 == len(network.layers[0].nodes[0].weights))
+
+def test_nodes_have_correct_number_of_inputs():
+    network = Network([2,2], learning_rate=.1, dataset=[1.2, -.2])
+
+    assert(3 == len(network.layers[0].nodes[0].inputs))
+
+def test_correct_output():
+    network = build_network()
+
+    output = network.layers[1].nodes[0].calculateOutput()
+    output2 = network.layers[1].nodes[1].calculateOutput()
+
+    assert(0.43905454967528385 == output)
+    assert(0.502499979166875 == output2)
+
+    output3 = network.layers[0].nodes[0].calculateOutput()
+
+    assert(0.5199893401555817 == output3)
+
+def test_correct_error():
+    network = build_network()
+
+    network.layers[1].nodes[0].calculateOutput()
+    network.layers[1].nodes[1].calculateOutput()
+    network.layers[0].nodes[0].calculateOutput()
+    network.layers[0].nodes[1].calculateOutput()
+
+    error = network.layers[1].nodes[0].calculateError(1)
+    error2 = network.layers[0].nodes[0].calculateHiddenError(network.layers[1], [1, 0])
+
+    assert(-0.1381528160171783 == error)
+    assert(-0.013167654026580511 == error2)
+
+def build_network():
+    network = Network([2,2], learning_rate=.1, dataset=[1.2, -.2])
+
+    network.layers[1].nodes[0].weights = [.3, .2, -0.1]
+    network.layers[1].nodes[0].inputs = [-1, .52, .49]
+
+    network.layers[1].nodes[1].weights = [.1, .4, -0.2]
+    network.layers[1].nodes[1].inputs = [-1, .52, .49]
+
+    network.layers[0].nodes[0].weights = [.2, .3, .4]
+    network.layers[0].nodes[0].inputs = [-1, 1.2, -0.2]
+
+    network.layers[0].nodes[1].weights = [.1, .2, -0.1]
+    network.layers[0].nodes[1].inputs = [-1, 1.2, -0.2]
+
+    return network

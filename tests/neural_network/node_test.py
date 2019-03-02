@@ -1,6 +1,20 @@
 from neural_network.node import Node
 
-def test_determines_whether_neuron_fires():
-    node = Node([0, 0, 0], 0)
+def test_correct_node_output():
+    node = Node([])
+    node.inputs = [-1, .52, .49]
+    node.weights = [.3, .2, -0.1]
 
-    assert(node.calculateOutput() == .5)
+    node.calculateOutput()
+
+    assert(-0.1381528160171783 == node.calculateError(1))
+
+def test_updates_weights():
+    node = Node([])
+    node.inputs = [1, -.2, -1]
+    node.weights = [.3, .4, .2]
+    node.error = -.013
+
+    node.updateWeights(.1)
+
+    assert([0.3013, 0.39974000000000004, 0.19870000000000002] == node.weights)

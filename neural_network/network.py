@@ -18,9 +18,6 @@ class Network():
             self.layers.append(layer)
 
     def calculateOutput(self):
-        dataset = self.input
-        for layer in self.layers:
-            layer.setInput(dataset)
-            dataset = layer.calculateOutput()
 
+        # self.layers[-1].calculateErrors(self.)
         return self.layers[-1].calculateOutput()
