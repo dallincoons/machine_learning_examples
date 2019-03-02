@@ -5,9 +5,9 @@ class NeuralNetClassifier():
     def fit(self, training_data, training_targets):
         print('----')
 
-        self.network = Network([4, len(np.unique(training_targets))], len(training_data.tolist()[0]), len(set(training_targets)), .1)
+        self.network = Network([4, len(np.unique(training_targets))], len(training_data.tolist()[0]), len(set(training_targets)), .5)
 
-        for i in range(0, 500):
+        for i in range(0, 300):
             for key, training in enumerate(training_data.tolist()):
                 self.network.train(training)
                 self.network.layers[-1].calculateErrors(self.target_pad(len(training_targets), training_targets[key]))
