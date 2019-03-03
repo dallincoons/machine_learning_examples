@@ -8,6 +8,7 @@ class Node:
         self.biasless_weights = list(map(lambda x: random.uniform(-1,1), range(0, num_weights)))
         self.bias = bias
         self.bias_weight = random.uniform(-1, 1)
+
         self.weights = self.biasless_weights[:]
         self.weights.append(self.bias_weight)
 

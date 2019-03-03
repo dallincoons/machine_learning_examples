@@ -3,8 +3,6 @@ from neural_network.network import Network
 
 class NeuralNetClassifier():
     def fit(self, training_data, training_targets):
-        print('----')
-
         self.network = Network([4, len(np.unique(training_targets))], len(training_data.tolist()[0]), len(set(training_targets)), .5)
 
         for i in range(0, 300):
